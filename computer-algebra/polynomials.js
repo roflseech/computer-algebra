@@ -188,6 +188,8 @@ polynomials.roots = function(a)
 
     var j = ost.greatDegree(); while(j.next != null) j = j.next;
     var pArray = natural.allDivs(j.coef.numerator);
+    if(natural.isZero(polynomials.calculate(ost, new fraction("0")).numerator))
+        res.push(new fraction("0"));
 
     for(var p = 0; p < pArray.length; p++)
     {
