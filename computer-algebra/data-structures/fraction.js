@@ -1,3 +1,8 @@
+/*
+Некрасов Никита
+Группа 7305
+Класс рационального числа
+*/
 class fraction
 {
     constructor(data)
@@ -5,12 +10,22 @@ class fraction
         
         if(typeof(data) == "string")
         {
-            data = data.split("/");
-            this.numerator = new longNumber(data[0]);
-            this.denominator = new longNumber(data[1]);
-            this.positive = this.numerator.positive == this.denominator.positive;
-            this.numerator.positive = true;
-            this.denominator.positive = true;
+            if(data.indexOf("/") == -1)
+            {
+                this.numerator = new longNumber(data);
+                this.denominator = new longNumber("1");
+                this.positive = this.numerator.positive;
+                this.numerator.positive = true;
+            }
+            else
+            {
+                data = data.split("/");
+                this.numerator = new longNumber(data[0]);
+                this.denominator = new longNumber(data[1]);
+                this.positive = this.numerator.positive == this.denominator.positive;
+                this.numerator.positive = true;
+                this.denominator.positive = true;
+            }
         }
         else if(data == null)
         {
@@ -34,7 +49,15 @@ class fraction
     {
         var res = "";
         if(!this.positive)res += "-";
-
-        return res + this.numerator.toString() + "/" + this.denominator.toString();
+        if(natural.compare(this.denominator, new longNumber("1")) == 0) res += this.numerator.toString();
+        else res += this.numerator.toString() + "/" + this.denominator.toString();
+        return res;
+    }
+    toStringNoMinus()
+    {
+        var res;
+        if(natural.compare(this.denominator, new longNumber("1")) == 0) res = this.numerator.toString();
+        else res = this.numerator.toString() + "/" + this.denominator.toString();
+        return res;
     }
 }

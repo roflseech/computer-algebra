@@ -1,5 +1,8 @@
-//Функции для работы с натуральными числами
-//Nekrasov Nikita
+/*
+Некрасов Никита
+Группа 7305
+Функции для работы с целыми числами
+*/
 
 var integer = {};
 
@@ -87,5 +90,12 @@ integer.div = function(a, b)
 integer.mod = function(a, b)
 {
     var res = natural.mod(a, b);
+    return res;
+}
+
+integer.power = function(a, k)
+{
+    var res = natural.power(a, k);
+    if(!a.positive) res.positive = k%2 == 0;
     return res;
 }

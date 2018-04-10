@@ -1,8 +1,8 @@
-//Функции для работы с натуральными числами
-//Nekrasov Nikita
-
-//Примечание:
-//nn = natural number
+/*
+Некрасов Никита
+Группа 7305
+Функции для работы с натуральными числами
+*/
 
 var natural = {};
 
@@ -79,7 +79,7 @@ natural.minus = function(nn1, nn2)
     return res;
 }
 //Умножение натурального числа на цифру
-natural.multiplyByDigit = function(nn, digit)
+natural.multByDigit = function(nn, digit)
 {
     if(digit > 9 || digit < 0) return new longNumber("0");
     var res = nn.createCopy();
@@ -94,7 +94,7 @@ natural.multiplyByDigit = function(nn, digit)
     return res;
 }
 //умножение числа на 10^k
-natural.multiplyBy10PowerK= function(nn, k)
+natural.multBy10PowerK= function(nn, k)
 {
     if(k < 0) return new longNumber("");
     var res = new longNumber("");
@@ -113,8 +113,8 @@ natural.multiply = function(nn1, nn2)
 
     for(var i = 0; i <= nn2.greatDigit(); i++)
     {
-        var mult = natural.multiplyByDigit(nn1, nn2.getDigit(i));
-        if(i != 0) mult = natural.multiplyBy10PowerK(mult, i);
+        var mult = natural.multByDigit(nn1, nn2.getDigit(i));
+        if(i != 0) mult = natural.multBy10PowerK(mult, i);
         res = natural.plus(res, mult);
     }
 
@@ -123,7 +123,7 @@ natural.multiply = function(nn1, nn2)
 //вычитание из натурального другого натурального, домжноженного на цифру, для случая положительного результата
 natural.minusMultiplied = function(nn1, nn2, k)
 {
-    var mult = natural.multiplyByDigit(nn2, k);
+    var mult = natural.multByDigit(nn2, k);
 
     if(natural.compare(mult, nn1) == 2) return new longNumber("");
 
@@ -136,11 +136,11 @@ natural.firstDigitByDiv = function(nn1, nn2)
 {
     var nn = nn1.createCopy();
     var great_digit_diff = nn1.greatDigit() - nn2.greatDigit();
-    var sub = natural.multiplyBy10PowerK(nn2, great_digit_diff);
+    var sub = natural.multBy10PowerK(nn2, great_digit_diff);
 
     if(natural.compare(nn1, sub) == 1)
     {
-        sub = natural.multiplyBy10PowerK(nn2, great_digit_diff - 1);
+        sub = natural.multBy10PowerK(nn2, great_digit_diff - 1);
     }
     var i = 0;
     while(natural.compare(nn, sub) != 1)
@@ -162,14 +162,14 @@ natural.div = function(nn1, nn2)
     while(natural.compare(ost, nn2) != 1)
     {
         var currentDigit = natural.firstDigitByDiv(ost, nn2);
-        var sub = natural.multiplyByDigit(nn2, currentDigit);
+        var sub = natural.multByDigit(nn2, currentDigit);
         var diff = ost.greatDigit() - sub.greatDigit();
 
-        var sub1 = natural.multiplyBy10PowerK(sub, diff);
+        var sub1 = natural.multBy10PowerK(sub, diff);
         if(natural.compare(sub1, ost) == 2)
         {
             diff = diff - 1;
-            sub = natural.multiplyBy10PowerK(sub, diff);
+            sub = natural.multBy10PowerK(sub, diff);
         }
         else sub = sub1;
         ost = natural.minus(ost, sub);
@@ -220,5 +220,41 @@ natural.lcm = function(nn1, nn2)
     if(natural.compare(nn2, zero) == 0) return zero;
     var res = natural.div(natural.multiply(nn1, nn2), natural.gcf(nn1, nn2));
 
+    return res;
+}
+//Возведение в степень
+natural.power = function(a, k)
+{
+    var res = new longNumber("1");
+    for(var i = new longNumber(""); natural.compare(k, i) == 2; i = natural.addOne(i))
+        res = natural.multiply(res, a);
+    return res;
+}
+natural.factorize = function(a)
+{
+    var res = new Array();
+    var ost = a.createCopy();
+    for(var i = new longNumber("2"); natural.compare(ost, i) == 2; i = natural.addOne(i))
+    {
+        if(natural.isZero(natural.mod(ost, i)))
+        {
+            ost = natural.div(ost, i);
+            res.push(i);
+            i = natural.minus(i, new longNumber("1"));
+        }
+    }
+    res.push(ost);
+    return res;
+}
+natural.allDivs = function(a)
+{
+    var res = new Array();
+    for(var i = new longNumber("1"); natural.compare(a, i) != 1; i = natural.addOne(i))
+    {
+        if(natural.isZero(natural.mod(a, i)))
+        {
+            res.push(i.createCopy());
+        }
+    }
     return res;
 }

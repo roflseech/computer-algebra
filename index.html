@@ -51,9 +51,19 @@
 <body>
 
 <h1>Компьютерная алгебра</h1>
-<p>Для того чтобы выполнить какое-то действие - достаточно ввести аргументы(разделяя их запятыми) и нажать на нужную кнопук. 
-При вводе дробей нужно использовать / для отделения числителя от знаменателя. </p>
-
+<p>Для того чтобы выполнить какое-либо действие - достаточно ввести аргументы(разделяя их запятыми) и нажать на нужную кнопку, после чего в самом нижнем текстовом поле появится результат<br>
+Действие будет рассматриваться относительно первого аргумента. Например при вводе "21, 7" и нажатии на "Вычесть" результат будет 14.<br>
+<br>
+При вводе дробей нужно использовать / для отделения числителя от знаменателя. Например 5/6. При вводе 2/3, 5/2 и нажатии на "Умножить" результат будет 5/3.<br>
+<br>
+Пример ввода многочленов: <br>
+1/2x^2 + 2x - 4<br>
+x^2 - x^4 + 5/3x^120 - 222222/777777<br>
+Подробнее:<br>
+Пробелы и знаки степени вводить не обязательно(т.е. x^2 - 2 = x2-2)<br>
+Остутствие коэффициента = коэффициент равен 1(т.е. 1x = x)<br>
+Отсутствие степени = степень равна 1(т.е. x^1 = x)<br>
+Отсутствие х = степень равна 0(т.е. 2x^0 = 2)<br></p>
 <div id="tabs">
 	<ul>
 		<li><a href="#tab-natural">Натуральные числа</a></li>
@@ -68,14 +78,17 @@
 		<button id="natural-plus">Сложить</button>
 		<button id="natural-minus">Вычесть</button>
 		<button id="natural-multbydigit">Умножить на цифру</button>
-		<button id="natural-multby10powk">Умножить на 10^k</button>
+		<button id="natural-multby10powerk">Умножить на 10^k</button>
 		<button id="natural-multiply">Умножить</button>
-		<p><button id="natural-minusmultiplied">Вычесть число, умноженное на k</button>
-		<button id="natural-firstdiv">Первая цифра от деления</button>
+		<button id="natural-minusmultiplied">Вычесть число, умноженное на k</button>
+		<p><button id="natural-firstdigitbydiv">Первая цифра от деления</button>
 		<button id="natural-div">Делить</button>
 		<button id="natural-mod">Остаток от деления</button>
 		<button id="natural-gcf">НОД</button>
-		<button id="natural-lcm">НОК</button></p>
+		<button id="natural-lcm">НОК</button>
+		<button id="natural-power">Возвести в степень</button>
+		<button id="natural-factorize">Разложить на множители</button>
+		<button id="natural-alldivs">Все делители</button></p>
 	</div>
 	<div id="tab-integer">
 		<button id="integer-abs">Абсолютная велечина</button>
@@ -86,6 +99,7 @@
 		<button id="integer-multiply">Умножить</button>
 		<button id="integer-div">Делить</button>
 		<button id="integer-mod">Остаток от деления</button>
+		<button id="integer-power">Возвести в степень</button>
 	</div>
 	<div id="tab-rational">
 		<button id="rational-reduce">Сократить</button>
@@ -94,115 +108,77 @@
 		<button id="rational-minus">Вычесть</button>
 		<button id="rational-multiply">Умножить</button>
 		<button id="rational-div">Делить</button>
+		<button id="rational-power">Возвести в степень</button>
 	</div>
-	<div id="tab-polynomial"></div>
+	<div id="tab-polynomial">
+		<button id="polynomial-plus">Сложить</button>
+		<button id="polynomial-minus">Вычесть</button>
+		<button id="polynomial-multbyrational">Домножить на рациональный коэффициент</button>
+		<button id="polynomial-multbyxpowerk">Домножить на x в заданной степени</button>
+		<button id="polynomial-greatdegree">Старшая степень</button>
+		<button id="polynomial-tointegercoefficient">Перейти к целым коэффициентам</button>
+		<p><button id="polynomial-multiply">Умножить</button>
+		<button id="polynomial-div">Делить</button>
+		<button id="polynomial-mod">Остаток от деления</button>
+		<button id="polynomial-gcf">Наибольший общий делитель</button>
+		<button id="polynomial-derivative">Производная</button>
+		<button id="polynomial-calculate">Вычислить при заданном значении x</button></p>
+		<p><button id="polynomial-power">Возвести в степень</button>
+		<button id="polynomial-roots">Рациональные корни</button>
+		<button id="polynomial-tosingleroots">Кратные корни в простые</button></p>
+	</div>
 </div>
 <h2 class="demoHeaders">Аргументы</h2>
-<textarea name = "args" id = "args"></textarea>
+<textarea name = "args" id = "args" rows="4" cols="50"></textarea>
 <h2 class="demoHeaders">Результат</h2>
-<textarea name = "result" id = "result"></textarea>
+<textarea name = "result" id = "result" rows="4" cols="50"></textarea>
 
 <script src="external/jquery/jquery.js"></script>
 <script src="jquery-ui.js"></script>
 
 <script src="computer-algebra/data-structures/number.js"></script>
 <script src="computer-algebra/data-structures/fraction.js"></script>
+<script src="computer-algebra/data-structures/polynomial.js"></script>
 <script src="computer-algebra/natural-numbers.js"></script>
 <script src="computer-algebra/integers.js"></script>
 <script src="computer-algebra/rational-numbers.js"></script>
+<script src="computer-algebra/polynomials.js"></script>
 <script src="computer-algebra/parser.js"></script>
 
 <script>
-//natural numbers
-$("#natural-compare").button().click(function()
-{ $("#result").val(runCommand("natural-compare", $("#args").val())); });
-
-$("#natural-iszero").button().click(function()
-{ $("#result").val(runCommand("natural-iszero", $("#args").val())); });
-
-$("#natural-addone").button().click(function()
-{ $("#result").val(runCommand("natural-addone", $("#args").val())); });
-
-$("#natural-plus").button().click(function()
-{ $("#result").val(runCommand("natural-plus", $("#args").val())); });
-
-$("#natural-minus").button().click(function()
-{ $("#result").val(runCommand("natural-minus", $("#args").val())); });
-
-$("#natural-multbydigit").button().click(function()
-{ $("#result").val(runCommand("natural-multbydigit", $("#args").val())); });
-
-$("#natural-multby10powk").button().click(function()
-{ $("#result").val(runCommand("natural-multby10powk", $("#args").val())); });
-
-$("#natural-multiply").button().click(function()
-{ $("#result").val(runCommand("natural-multiply", $("#args").val())); });
-
-$("#natural-minusmultiplied").button().click(function()
-{ $("#result").val(runCommand("natural-minusmultiplied", $("#args").val())); });
-
-$("#natural-firstdiv").button().click(function()
-{ $("#result").val(runCommand("natural-firstdiv", $("#args").val())); });
-
-$("#natural-div").button().click(function()
-{ $("#result").val(runCommand("natural-div", $("#args").val())); });
-
-$("#natural-mod").button().click(function()
-{ $("#result").val(runCommand("natural-mod", $("#args").val())); });
-
-$("#natural-gcf").button().click(function()
-{ $("#result").val(runCommand("natural-gcf", $("#args").val())); });
-
-$("#natural-lcm").button().click(function()
-{ $("#result").val(runCommand("natural-lcm", $("#args").val())); });
-
-//integers
-$("#integer-abs").button().click(function()
-{ $("#result").val(runCommand("integer-abs", $("#args").val())); });
-
-$("#integer-ispositive").button().click(function()
-{ $("#result").val(runCommand("integer-ispositive", $("#args").val())); });
-
-$("#integer-multbyminusone").button().click(function()
-{ $("#result").val(runCommand("integer-multbyminusone", $("#args").val())); });
-
-$("#integer-plus").button().click(function()
-{ $("#result").val(runCommand("integer-plus", $("#args").val())); });
-
-$("#integer-minus").button().click(function()
-{ $("#result").val(runCommand("integer-minus", $("#args").val())); });
-
-$("#integer-multiply").button().click(function()
-{ $("#result").val(runCommand("integer-multiply", $("#args").val())); });
-
-$("#integer-div").button().click(function()
-{ $("#result").val(runCommand("integer-div", $("#args").val())); });
-
-$("#integer-mod").button().click(function()
-{ $("#result").val(runCommand("integer-mod", $("#args").val())); });
-
-//rational
-$("#rational-reduce").button().click(function()
-{ $("#result").val(runCommand("rational-reduce", $("#args").val())); });
-
-$("#rational-isinteger").button().click(function()
-{ $("#result").val(runCommand("rational-isinteger", $("#args").val())); });
-
-$("#rational-plus").button().click(function()
-{ $("#result").val(runCommand("rational-plus", $("#args").val())); });
-
-$("#rational-minus").button().click(function()
-{ $("#result").val(runCommand("rational-minus", $("#args").val())); });
-
-$("#rational-multiply").button().click(function()
-{ $("#result").val(runCommand("rational-multiply", $("#args").val())); });
-
-$("#rational-div").button().click(function()
-{ $("#result").val(runCommand("rational-div", $("#args").val())); });
-
-//tabs
+var naturalFunctions = Object.getOwnPropertyNames(natural);
+for(var key in naturalFunctions)
+{	
+	$("#natural-" + naturalFunctions[key].toLowerCase()).button().click(function()
+	{ 
+		$("#result").val(runCommand(this.id, $("#args").val())); 
+	});
+}
+var integerFunctions = Object.getOwnPropertyNames(integer);
+for(var key in integerFunctions)
+{	
+	$("#integer-" + integerFunctions[key].toLowerCase()).button().click(function()
+	{ 
+		$("#result").val(runCommand(this.id, $("#args").val())); 
+	});
+}
+var rationalFunctions = Object.getOwnPropertyNames(rational);
+for(var key in rationalFunctions)
+{	
+	$("#rational-" + rationalFunctions[key].toLowerCase()).button().click(function()
+	{ 
+		$("#result").val(runCommand(this.id, $("#args").val())); 
+	});
+}
+var polynomialFunctions = Object.getOwnPropertyNames(polynomials);
+for(var key in polynomialFunctions)
+{	
+	$("#polynomial-" + polynomialFunctions[key].toLowerCase()).button().click(function()
+	{ 
+		$("#result").val(runCommand(this.id, $("#args").val())); 
+	});
+}
 $( "#tabs" ).tabs();
-
 </script>
 </body>
 </html>

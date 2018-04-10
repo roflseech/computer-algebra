@@ -1,3 +1,10 @@
+/*
+Некрасов Никита
+Группа 7305
+Функции для работы с рациональными числами
+*/
+
+//Объект, содержащий функции для работы с рациональными числами
 var rational = {};
 
 rational.reduce = function(a)
@@ -29,7 +36,6 @@ rational.plus = function(a, b)
     var n2 = natural.multiply(b.numerator, natural.div(lcm, b.denominator));
     n1.positive = a.positive;
     n2.positive = b.positive;
-    console.log(n1.toString() + " " + n2.toString());
     var n = integer.plus(n1, n2);
 
     res.positive = n.positive;
@@ -45,7 +51,6 @@ rational.minus = function(a, b)
 {
     n = b.createCopy();
     n.positive = !n.positive;
-    console.log(a.toString() + " " + n.toString());
     var res = rational.plus(a, n);
     res = rational.reduce(res);
 
@@ -71,5 +76,15 @@ rational.div = function(a, b)
     res.denominator = natural.multiply(a.denominator, b.numerator);
     res.positive = a.positive == b.positive;
     res = rational.reduce(res);
+    return res;
+}
+
+rational.power = function(a, k)
+{
+    var res = rational.reduce(a);
+    res.numerator = natural.power(res.numerator, k);
+    res.denominator = natural.power(res.denominator, k);
+    if(!a.positive) res.positive = k % 2 == 0;
+
     return res;
 }
