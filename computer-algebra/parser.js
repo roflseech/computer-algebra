@@ -364,7 +364,6 @@ var parseRationalCommand = function(cmdname, args)
         if(argsArray.length != 2) return "Требуется 2 аргумента";
         if(!isRational(argsArray[0])) return "Аргумент не рациональное число [" + argsArray[0] + "]";
         if(!isRational(argsArray[1])) return "Аргумент не рациональное число [" + argsArray[1] + "]";
-        if(natural.isZero(new fraction(argsArray[1]).numerator)) return "Числитель делителя равен 0";
         
         return rational.multiply(new fraction(argsArray[0]), new fraction(argsArray[1])).toString();
     }
