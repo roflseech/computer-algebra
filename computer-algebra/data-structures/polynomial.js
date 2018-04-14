@@ -40,7 +40,10 @@ class polynomial
                 }
                 else if(i == data.length - 1)
                 {
-                    addArray.push(data.substring(begin, i + 1));
+                    var tmp = data.substring(begin, data.length);
+                    if(!nextPositive && tmp.charAt(0) == "x") tmp = "-1" + tmp;
+                    else if(!nextPositive && tmp.charAt(0) != "x")tmp = "-" + tmp;
+                    addArray.push(tmp);
                 }
             }
             for(var i = 0; i < addArray.length; i++)

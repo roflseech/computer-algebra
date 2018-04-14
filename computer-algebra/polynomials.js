@@ -19,6 +19,8 @@ polynomials.plus = function(a, b)
 }
 polynomials.minus = function(a, b)
 {
+    console.log(a.toString());
+    console.log(b.toString());
     var res = a.createCopy();
 
     for(var i = b.greatDegree(); i != null; i = i.next)
