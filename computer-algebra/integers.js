@@ -85,7 +85,7 @@ integer.div = function(a, b)
     res.positive = a.positive == b.positive;
     if(!a.positive)
     {
-        if(natural.compare(a, b) == 2) res = natural.addOne(res);
+        if(natural.compare(a, b) != 0) res = natural.addOne(res);
     }
     return res;
 }
