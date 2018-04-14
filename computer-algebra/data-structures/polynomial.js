@@ -16,18 +16,27 @@ class polynomial
 
             var addArray = new Array();
             var begin = 0;
+            var nextPositive = true;
+
             for(var i = 0; i < data.length; i++)
             {
                 if(data.charAt(i) == "+")
                 {
-                    addArray.push(data.substring(begin, i));
+                    var tmp = data.substring(begin, i);
+                    if(!nextPositive && tmp.charAt(0) == "x") tmp = "-1" + tmp;
+                    else if(!nextPositive && tmp.charAt(0) != "x")tmp = "-" + tmp;
+                    addArray.push(tmp);
                     begin = i + 1;
-
+                    nextPositive = true;
                 }
                 else if(data.charAt(i) == "-")
                 {
-                    addArray.push(data.substring(begin, i));
-                    begin = i;
+                    var tmp = data.substring(begin, i);
+                    if(!nextPositive && tmp.charAt(0) == "x") tmp = "-1" + tmp;
+                    else if(!nextPositive && tmp.charAt(0) != "x")tmp = "-" + tmp;
+                    addArray.push(tmp);
+                    nextPositive = false;
+                    begin = i + 1;
                 }
                 else if(i == data.length - 1)
                 {
@@ -69,6 +78,7 @@ class polynomial
     {
         if(!natural.isZero(coef.numerator))
         {
+            console.log(degree.toString());
             if(this.firstCoef == null)
             {
                 this.firstCoef = {};
@@ -89,6 +99,7 @@ class polynomial
                     this.firstCoef.prev = null;
                     this.firstCoef.degree = degree.createCopy();
                     this.firstCoef.coef = coef.createCopy();
+                    tmp.prev = this.firstCoef;
                 }
                 else while(!done)
                 {
@@ -121,7 +132,6 @@ class polynomial
                     }
                     cur = cur.next;
                 }
-    
             }
         }
         else
@@ -131,6 +141,9 @@ class polynomial
             {
                 if(natural.compare(cur.degree, degree) == 0)
                 {
+                    console.log(cur.prev);
+                    console.log(cur);
+                    console.log(cur.next);
                     if(cur.prev != null) cur.prev.next = cur.next;
                     else this.firstCoef = cur.next;
                     if(cur.next != null) cur.next.prev = cur.prev
@@ -152,11 +165,7 @@ class polynomial
     }
     addCoef(degree, coef)
     {
-        if(!natural.isZero(this.getCoef(degree).numerator))
-        {
-            this.setCoef(degree, rational.plus(this.getCoef(degree), coef));
-        }
-        else this.setCoef(degree, coef);
+        this.setCoef(degree, rational.plus(this.getCoef(degree), coef));
     }
     greatDegreeCoef()
     {
@@ -171,6 +180,7 @@ class polynomial
     {
         var str = "";
         var cur = this.firstCoef;
+        if(cur == null)return "0";
         while(cur != null)
         {
             if(cur === this.firstCoef && !cur.coef.positive) str += "-";

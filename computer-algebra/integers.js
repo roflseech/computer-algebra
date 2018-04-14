@@ -83,13 +83,16 @@ integer.div = function(a, b)
 {
     var res = natural.div(a, b);
     res.positive = a.positive == b.positive;
-
+    if(!a.positive)
+    {
+        if(natural.compare(a, b) == 2) res = natural.addOne(res);
+    }
     return res;
 }
 
 integer.mod = function(a, b)
 {
-    var res = natural.mod(a, b);
+    var res = integer.minus(a, integer.multiply(integer.div(a, b), b));
     return res;
 }
 

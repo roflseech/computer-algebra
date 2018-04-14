@@ -9,12 +9,8 @@ var polynomials = {};
 
 polynomials.plus = function(a, b)
 {
-    var res = new polynomial(null);
+    var res = a.createCopy();
 
-    for(var i = a.greatDegree(); i != null; i = i.next)
-    {
-        res.addCoef(i.degree, i.coef);
-    }
     for(var i = b.greatDegree(); i != null; i = i.next)
     {
         res.addCoef(i.degree, i.coef);
@@ -23,12 +19,8 @@ polynomials.plus = function(a, b)
 }
 polynomials.minus = function(a, b)
 {
-    var res = new polynomial(null);
+    var res = a.createCopy();
 
-    for(var i = a.greatDegree(); i != null; i = i.next)
-    {
-        res.addCoef(i.degree, i.coef);
-    }
     for(var i = b.greatDegree(); i != null; i = i.next)
     {
         var c = i.coef.createCopy();
@@ -106,15 +98,12 @@ polynomials.div = function(a, b)
     var res = new polynomial(null);
     var ost = a.createCopy();
 
-    var i = 0;
     while(ost.greatDegree() != null && natural.compare(ost.greatDegree().degree, b.greatDegree().degree) != 1)
     {
         var mult = rational.div(ost.greatDegree().coef, b.greatDegree().coef);
         var powx = natural.minus(ost.greatDegree().degree, b.greatDegree().degree);
         ost = polynomials.minus(ost, polynomials.multByXpowerk(polynomials.multByRational(b, mult), powx));
         res.setCoef(powx, mult);
-        i ++;
-        if(i == 5) return res;
     }
     return res;
 }
