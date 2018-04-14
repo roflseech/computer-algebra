@@ -13,7 +13,6 @@ class polynomial
         if(typeof(data) === 'string')
         {
             while(data.indexOf("^") != -1) data = data.replace("^", "");
-
             var addArray = new Array();
             var begin = 0;
             var nextPositive = true;
