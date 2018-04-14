@@ -81,7 +81,6 @@ class polynomial
     {
         if(!natural.isZero(coef.numerator))
         {
-            console.log(degree.toString());
             if(this.firstCoef == null)
             {
                 this.firstCoef = {};
@@ -144,9 +143,6 @@ class polynomial
             {
                 if(natural.compare(cur.degree, degree) == 0)
                 {
-                    console.log(cur.prev);
-                    console.log(cur);
-                    console.log(cur.next);
                     if(cur.prev != null) cur.prev.next = cur.next;
                     else this.firstCoef = cur.next;
                     if(cur.next != null) cur.next.prev = cur.prev
