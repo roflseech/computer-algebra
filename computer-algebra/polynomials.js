@@ -1,10 +1,4 @@
-/*
-Некрасов Никита
-Группа 7305
-Функции для работы с многочленами
-*/
 
-//Объект, содержащий функции для работы с многочленами
 var polynomials = {};
 
 polynomials.plus = function(a, b)
@@ -171,7 +165,7 @@ polynomials.power = function(a, p)
 }
 polynomials.roots = function(a)
 {
-    //p/q возможный корень
+    //p/q posssible root
     var res = new Array();
 
     var ost = polynomials.toIntegerCoefficient(a.createCopy()).res;

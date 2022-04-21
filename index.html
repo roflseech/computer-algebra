@@ -17,86 +17,89 @@
 </head>
 <body>
 
-<h1>Компьютерная алгебра</h1>
-<p>Для того чтобы выполнить какое-либо действие - достаточно ввести аргументы(разделяя их запятыми) и нажать на нужную кнопку, после чего в самом нижнем текстовом поле появится результат<br>
-Действие будет рассматриваться относительно первого аргумента. Например при вводе "21, 7" и нажатии на "Вычесть" результат будет 14.<br>
+<h1>Computer algebra</h1>
+Some computer algebra methods that work with long numbers.<br>
+Supports Natural numbers, Integers, Rational numbers and Polynomials.<br>
+Each operation is built using previously defined operations, you can check source codes to see the algorithms, and see which other operations they use.<br>
+<p>To do any operation - input the arguments, separating them with commas, and press operation buttton. Result will appear in bottom text field.<br>
+Operations are performed relatively first argument. For example, for input "21, 7" - Minus command's result will be 14.<br>
 <br>
-При вводе дробей нужно использовать / для отделения числителя от знаменателя. Например 5/6. При вводе 2/3, 5/2 и нажатии на "Умножить" результат будет 5/3. Также если знаменатель равен нулю, то можно просто написать "5", что будет эквивалентно "5/1"<br>
+For fraction input use / to separate numerator from denominator. For example "5/6". For input "2/3, 5/2" multiplication result will be "5/3". Also, if denominator is equal to 1, you can skip it - "5" is equivalent to "5/1"<br>
 <br>
-Пример ввода многочленов: <br>
+Input example for polynomials: <br>
 1/2x^2 + 2x - 4<br>
 x^2 - x^4 + 5/3x^120 - 222222/777777<br>
-Подробнее:<br>
-Пробелы и знаки степени вводить не обязательно(т.е. x^2 - 2 = x2-2)<br>
-Остутствие коэффициента = коэффициент равен 1(т.е. 1x = x)<br>
-Отсутствие степени = степень равна 1(т.е. x^1 = x)<br>
-Отсутствие х = степень равна 0(т.е. 2x^0 = 2)<br></p>
+More info:<br>
+Space and power signs are not necessary("x^2 - 2" equals to "x2-2")<br>
+No coefficient is being interpreted as coefficient equal to 1("1x" is equal to "x")<br>
+No power sets power equal to 1("x^1" is equal to "x")<br>
+No х means that power is 0("2x^0" is equal to "2")<br></p>
 <div id="tabs">
 	<ul>
-		<li><a href="#tab-natural">Натуральные числа</a></li>
-		<li><a href="#tab-integer">Целые числа</a></li>
-		<li><a href="#tab-rational">Рациональные числа</a></li>
-		<li><a href="#tab-polynomial">Многочлены</a></li>
+		<li><a href="#tab-natural">Natural</a></li>
+		<li><a href="#tab-integer">Integers</a></li>
+		<li><a href="#tab-rational">Rational</a></li>
+		<li><a href="#tab-polynomial">Polynomials</a></li>
 	</ul>
 	<div id="tab-natural">
-		<button id="natural-compare">Сравнить</button>
-		<button id="natural-addone">Добавить 1</button>
-		<button id="natural-plus">Сложить</button>
-		<button id="natural-minus">Вычесть</button>
-		<button id="natural-multbydigit">Умножить на цифру</button>
-		<button id="natural-multby10powerk">Умножить на 10^k</button>
-		<button id="natural-multiply">Умножить</button>
-		<button id="natural-minusmultiplied">Вычесть число, умноженное на k</button>
-		<p><button id="natural-firstdigitbydiv">Первая цифра от деления</button>
-		<button id="natural-div">Делить</button>
-		<button id="natural-mod">Остаток от деления</button>
-		<button id="natural-gcf">НОД</button>
-		<button id="natural-lcm">НОК</button>
-		<button id="natural-power">Возвести в степень</button>
-		<button id="natural-factorize">Разложить на множители</button>
-		<button id="natural-alldivs">Все делители</button></p>
+		<button id="natural-compare">Compare</button>
+		<button id="natural-addone">Plus 1</button>
+		<button id="natural-plus">Plus</button>
+		<button id="natural-minus">Minus</button>
+		<button id="natural-multbydigit">Multiply by number</button>
+		<button id="natural-multby10powerk">Multiplyu by 10^k</button>
+		<button id="natural-multiply">Multiply</button>
+		<button id="natural-minusmultiplied">Subtract a number multiplied by k</button>
+		<p><button id="natural-firstdigitbydiv">First digit of division</button>
+		<button id="natural-div">Divide</button>
+		<button id="natural-mod">Division remainder</button>
+		<button id="natural-gcf">GCD</button>
+		<button id="natural-lcm">LCM</button>
+		<button id="natural-power">Power</button>
+		<button id="natural-factorize">Factorize</button>
+		<button id="natural-alldivs">All divisors</button></p>
 	</div>
 	<div id="tab-integer">
-		<button id="integer-abs">Абсолютная велечина</button>
-		<button id="integer-ispositive">Проверка на положительность</button>
-		<button id="integer-multbyminusone">Умножить на -1</button>
-		<button id="integer-plus">Сложить</button>
-		<button id="integer-minus">Вычесть</button>
-		<button id="integer-multiply">Умножить</button>
-		<button id="integer-div">Делить</button>
-		<button id="integer-mod">Остаток от деления</button>
-		<button id="integer-power">Возвести в степень</button>
+		<button id="integer-abs">Absolute value</button>
+		<button id="integer-ispositive">Is Positive</button>
+		<button id="integer-multbyminusone">Multiply by -1</button>
+		<button id="integer-plus">Plus</button>
+		<button id="integer-minus">Minus</button>
+		<button id="integer-multiply">Multiply</button>
+		<button id="integer-div">Divide</button>
+		<button id="integer-mod">Division remainder</button>
+		<button id="integer-power">Power</button>
 	</div>
 	<div id="tab-rational">
-		<button id="rational-reduce">Сократить</button>
-		<button id="rational-isinteger">Проверка на принадлежность к целым числам</button>
-		<button id="rational-plus">Сложить</button>
-		<button id="rational-minus">Вычесть</button>
-		<button id="rational-multiply">Умножить</button>
-		<button id="rational-div">Делить</button>
-		<button id="rational-power">Возвести в степень</button>
+		<button id="rational-reduce">Reduce</button>
+		<button id="rational-isinteger">Is integer</button>
+		<button id="rational-plus">Plus</button>
+		<button id="rational-minus">Minus</button>
+		<button id="rational-multiply">Multiply</button>
+		<button id="rational-div">Divide</button>
+		<button id="rational-power">Power</button>
 	</div>
 	<div id="tab-polynomial">
-		<button id="polynomial-plus">Сложить</button>
-		<button id="polynomial-minus">Вычесть</button>
-		<button id="polynomial-multbyrational">Домножить на рациональный коэффициент</button>
-		<button id="polynomial-multbyxpowerk">Домножить на x в заданной степени</button>
-		<button id="polynomial-greatdegree">Старшая степень</button>
-		<button id="polynomial-tointegercoefficient">Перейти к целым коэффициентам</button>
-		<p><button id="polynomial-multiply">Умножить</button>
-		<button id="polynomial-div">Делить</button>
-		<button id="polynomial-mod">Остаток от деления</button>
-		<button id="polynomial-gcf">Наибольший общий делитель</button>
-		<button id="polynomial-derivative">Производная</button>
-		<button id="polynomial-calculate">Вычислить при заданном значении x</button></p>
-		<p><button id="polynomial-power">Возвести в степень</button>
-		<button id="polynomial-roots">Рациональные корни</button>
-		<button id="polynomial-tosingleroots">Кратные корни в простые</button></p>
+		<button id="polynomial-plus">Plus</button>
+		<button id="polynomial-minus">Minus</button>
+		<button id="polynomial-multbyrational">Multiply by rational</button>
+		<button id="polynomial-multbyxpowerk">Multiply by x^p</button>
+		<button id="polynomial-greatdegree">Greatest degree</button>
+		<button id="polynomial-tointegercoefficient">To integer coefficients</button>
+		<p><button id="polynomial-multiply">Multiply</button>
+		<button id="polynomial-div">Divide</button>
+		<button id="polynomial-mod">Division remainder</button>
+		<button id="polynomial-gcf">GCF</button>
+		<button id="polynomial-derivative">Derivative</button>
+		<button id="polynomial-calculate">Calculate for given x</button></p>
+		<p><button id="polynomial-power">Power</button>
+		<button id="polynomial-roots">Rational roots</button>
+		<button id="polynomial-tosingleroots">To single roots</button></p>
 	</div>
 </div>
-<h2 class="demoHeaders">Аргументы</h2>
+<h2 class="demoHeaders">Arguments</h2>
 <textarea name = "args" id = "args" rows="4" cols="50"></textarea>
-<h2 class="demoHeaders">Результат</h2>
+<h2 class="demoHeaders">Result</h2>
 <textarea name = "result" id = "result" rows="4" cols="50"></textarea>
 
 <script src="external/jquery/jquery.js"></script>

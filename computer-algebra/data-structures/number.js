@@ -1,11 +1,6 @@
-/*
-Некрасов Никита
-Группа 7305
-Класс целого числа
-*/
+
 class longNumber
 {
-    //если data - строка с числами, то создаёт число на её основе
     constructor(data)
     {
         this.digits = new Array();

@@ -1,13 +1,9 @@
-/*
-Некрасов Никита
-Группа 7305
-Функции для работы с натуральными числами
-*/
+
 
 var natural = {};
 
 
-//Сравнение натуральных чисел: 2 - если первое больше второго, 0, если равно, 1 иначе.
+//natural number comparison: 2 - first bigger than the second, 0 - equal, 1 - otherwise
 natural.compare = function(nn1, nn2)
 {
     if(nn1.greatDigit() > nn2.greatDigit()) return 2;
@@ -22,12 +18,10 @@ natural.compare = function(nn1, nn2)
     }
     return 0;
 }
-//Проверка на ноль: если число не равно нулю, то «да» иначе «нет»
 natural.isZero = function(nn)
 {
     return nn.greatDigit() == -1;
 }
-//Добавление 1 к натуральному числу
 natural.addOne = function(nn)
 {
     var res = nn.createCopy();
@@ -46,7 +40,6 @@ natural.addOne = function(nn)
     }
     return res;
 }
-//сложение nn1 и nn2
 natural.plus = function(nn1, nn2)
 {
     var greatDigit12 = nn1.greatDigit() > nn2.greatDigit() ? nn1.greatDigit() : nn2.greatDigit();
@@ -61,7 +54,7 @@ natural.plus = function(nn1, nn2)
     }
     return res;
 }
-//вычитание nn2 из nn1
+//nn1 - nn2
 natural.minus = function(nn1, nn2)
 {
     if(natural.compare(nn2, nn1) == 2) return new longNumber("");
@@ -78,7 +71,7 @@ natural.minus = function(nn1, nn2)
     }
     return res;
 }
-//Умножение натурального числа на цифру
+
 natural.multByDigit = function(nn, digit)
 {
     if(digit > 9 || digit < 0) return new longNumber("0");
@@ -93,7 +86,7 @@ natural.multByDigit = function(nn, digit)
     }
     return res;
 }
-//умножение числа на 10^k
+//multiply by 10^k
 natural.multBy10PowerK= function(nn, k)
 {
     if(k < 0) return new longNumber("");
@@ -106,7 +99,6 @@ natural.multBy10PowerK= function(nn, k)
 
     return res;
 }
-//умножение натуральных чисел
 natural.multiply = function(nn1, nn2)
 {
     var res = new longNumber("");
@@ -120,7 +112,7 @@ natural.multiply = function(nn1, nn2)
 
     return res;
 }
-//вычитание из натурального другого натурального, домжноженного на цифру, для случая положительного результата
+//subtracts the number multiplied by digit
 natural.minusMultiplied = function(nn1, nn2, k)
 {
     var mult = natural.multByDigit(nn2, k);
@@ -131,7 +123,7 @@ natural.minusMultiplied = function(nn1, nn2, k)
 
     return res;
 }
-//Вычисление первой цифры деления большего натурального на меньшее, домноженное на 10^k, где k - номер позиции этой цифры (номер считается с нуля)
+//first digit produced by division
 natural.firstDigitByDiv = function(nn1, nn2)
 {
     var nn = nn1.createCopy();
@@ -151,7 +143,6 @@ natural.firstDigitByDiv = function(nn1, nn2)
     
     return i;
 }
-//Деление натуральных чисел
 natural.div = function(nn1, nn2)
 {
     if(natural.compare(nn2, nn1) == 2) return new longNumber("");
@@ -178,13 +169,11 @@ natural.div = function(nn1, nn2)
 
     return res;
 }
-//Остаток от деления натуральных чисел
 natural.mod = function(nn1, nn2)
 {
     var res = natural.minus(nn1, natural.multiply(natural.div(nn1, nn2), nn2));
     return res;
 }
-//НОД
 natural.gcf = function(nn1, nn2)
 {
     if(natural.isZero(nn1)) return nn2;
@@ -212,7 +201,6 @@ natural.gcf = function(nn1, nn2)
     }
     return greater;
 }
-//НОК
 natural.lcm = function(nn1, nn2)
 {
     var zero = new longNumber("");
